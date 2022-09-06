@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Visit;
 use App\VisitorType;
 use App\Place;
+use App\Time;
 use Illuminate\Http\Request;
 
 class VisitController extends Controller
@@ -17,9 +18,8 @@ class VisitController extends Controller
 
     public function index()
     {
-        $visits = Visit::latest()->paginate(5);
-
-        return view('visits.index',compact('visits'))
+        $times = Time::latest()->paginate(5);
+        return view('visits.index',compact('times'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 

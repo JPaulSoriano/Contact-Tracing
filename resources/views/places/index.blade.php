@@ -6,9 +6,9 @@
         <p>{{ $message }}</p>
     </div>
     @endif
-<a class="btn btn-primary my-2" href="{{ route('visitortypes.create') }}">Add</a>
+<a class="btn btn-primary my-2" href="{{ route('places.create') }}">Add</a>
 <div class="card">
-    <div class="card-header bg-primary text-white">Visitor Type</div>
+    <div class="card-header bg-primary text-white">Places</div>
     <div class="card-body">
         <table class="table table-borderless">
             <thead>
@@ -18,15 +18,15 @@
             </tr>
             </thead>
             <tbody>
-                @foreach ($visitortypes as $visitortype)
+                @foreach ($places as $place)
                     <tr>
                         <td>{{ ++$i }}</td>
-                        <td>{{ $visitortype->name }}</td>
+                        <td>{{ $place->name }}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 </div>
-{!! $visitortypes->links() !!}
+{!! $places->links() !!}
 @endsection

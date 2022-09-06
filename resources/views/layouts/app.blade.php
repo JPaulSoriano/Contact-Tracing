@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'UdD Contact Tracing') }}
@@ -33,7 +33,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="visits">Visitors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="places">Places</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="visitortypes">Visitor Type</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
