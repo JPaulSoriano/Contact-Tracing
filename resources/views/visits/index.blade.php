@@ -12,6 +12,7 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col">Visitor Type</th>
+            <th scope="col">Place</th>
             <th scope="col">Name</th>
             <th scope="col">Address</th>
             <th scope="col">Contact No</th>
@@ -22,6 +23,7 @@
                 <tr>
                     <td>{{ ++$i }}</td>
                     <td>{{ $visit->visitortype->name }}</td>
+                    <td>{{ $visit->place->name }}</td>
                     <td>{{ $visit->lastname }}</td>
                     <td>{{ $visit->address }}</td>
                     <td>{{ $visit->contactno }}</td>

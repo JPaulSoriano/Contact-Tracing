@@ -17,9 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('visitortypes','VisitorTypeController');
 Route::resource('visits','VisitController');
+Route::resource('places','PlaceController');
 Route::get('/qrcode/{id}', 'QRController@generateQrCode');

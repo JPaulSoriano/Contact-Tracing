@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\VisitorType;
+use App\Place;
 use Illuminate\Http\Request;
 
-class VisitorTypeController extends Controller
+class PlaceController extends Controller
 {
     public function __construct()
     {
@@ -13,15 +13,15 @@ class VisitorTypeController extends Controller
 
     public function index()
     {
-        $visitortypes = VisitorType::latest()->paginate(5);
+        $places = Place::latest()->paginate(5);
 
-        return view('visitortypes.index',compact('visitortypes'))
+        return view('places.index',compact('places'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     public function create()
     {
-        return view('visitortypes.create');
+        return view('places.create');
     }
 
     public function store(Request $request)
@@ -30,9 +30,9 @@ class VisitorTypeController extends Controller
             'name' => 'required',
         ]);
 
-        VisitorType::create($request->all());
+        Place::create($request->all());
 
-        return redirect()->route('visitortypes.index')
-                        ->with('success','Visitor Type created successfully.');
+        return redirect()->route('places.index')
+                        ->with('success','Pace created successfully.');
     }
 }

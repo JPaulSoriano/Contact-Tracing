@@ -1,0 +1,16 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Time extends Model
+{
+    protected $fillable = [
+        'visit_id',
+    ];
+
+    public function visit(){
+        return $this->belongsTo('App\Visit');
+    }
+}
