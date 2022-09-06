@@ -11,8 +11,11 @@
             </ul>
         </div>
     @endif
-
-
+<div class="row justify-content-center">
+<div class="col-sm-6">
+<div class="card">
+<div class="card-header bg-primary text-white">Places</div>
+<div class="card-body">
     <form action="{{ route('visitortypes.store') }}" method="POST">
         @csrf
          <div class="row">
@@ -27,5 +30,8 @@
             </div>
         </div>
     </form>
-
+</div>
+</div>
+</div>
+</div>
 @endsection

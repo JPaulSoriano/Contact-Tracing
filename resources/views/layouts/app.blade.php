@@ -34,13 +34,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="visits">Visitors</a>
+                            <a class="nav-link" href="{{ route('visits.index') }}">Visitors</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="places">Places</a>
+                            <a class="nav-link" href="{{ route('places.index') }}">Places</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="visitortypes">Visitor Type</a>
+                            <a class="nav-link" href="{{ route('visitortypes.index') }}">Visitor Type</a>
                         </li>
                     </ul>
 
