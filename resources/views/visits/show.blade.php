@@ -37,12 +37,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="font-weight-bold">Last Time Visited:</label>
-                                <span>{{ $time->created_at }}</span>
-                            </div>
-                        </div>
                         </div>
                     </div>
             </div>
