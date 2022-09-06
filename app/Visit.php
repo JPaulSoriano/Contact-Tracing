@@ -16,6 +16,6 @@ class Visit extends Model
 
     public function getFullNameAttribute()
     {
-        return "{$this->last_name}, {$this->first_name} {$this->middle_name}";
+        return "{$this->lastname}, {$this->firstname} {$this->mi}";
     }
 }
