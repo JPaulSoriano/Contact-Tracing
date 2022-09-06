@@ -13,4 +13,9 @@ class Visit extends Model
     public function visitortype(){
         return $this->belongsTo('App\VisitorType');
     }
+
+    public function getFullNameAttribute()
+    {
+        return "{$this->last_name}, {$this->first_name} {$this->middle_name}";
+    }
 }

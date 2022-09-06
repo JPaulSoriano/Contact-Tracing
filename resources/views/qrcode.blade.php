@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <div class="row d-flex-justify-content-center text-center">
                         <div class="col-lg-12 font-weight-bold text-uppercase">
-                            {{$visit->lastname}}
+                            {{$visit->full_name}}
                         </div>
 
 
