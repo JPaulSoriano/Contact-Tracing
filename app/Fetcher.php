@@ -4,21 +4,26 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Visit extends Model
+class Fetcher extends Model
 {
     protected $fillable = [
-        'lastname', 'firstname', 'mi', 'address', 'contactno', 'visitortype_id', 'place_id'
+        'student_id',
+        'lastname',
+        'firstname',
+        'mi',
+        'address',
+        'email',
+        'contactno',
+        'image',
+        'verification'
     ];
-
-    public function visitortype(){
-        return $this->belongsTo('App\VisitorType');
-    }
-    public function place(){
-        return $this->belongsTo('App\Place');
-    }
 
     public function times(){
         return $this->hasMany('App\Time');
+    }
+
+    public function student(){
+        return $this->belongsTo('App\Student');
     }
 
     public function getFullNameAttribute()

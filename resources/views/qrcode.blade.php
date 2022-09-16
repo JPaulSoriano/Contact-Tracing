@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <div class="row d-flex-justify-content-center text-center">
                         <div class="col-lg-12 font-weight-bold text-uppercase">
-                            {{$visit->full_name}}
+                            {{$fetcher->student->full_name}}
                         </div>
 
 
@@ -24,7 +24,7 @@
                              ->merge(public_path('images/logo.png'), 0.3, true)->errorCorrection('H')
                              ->color(0, 28, 64)
                              ->margin(3)
-                             ->generate(url('/visits')."/".$visit->id)); !!}">
+                             ->generate(url('/fetchers')."/".$fetcher->id."/show")); !!}">
                          </div>
                     </div>
                 </div>

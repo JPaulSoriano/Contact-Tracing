@@ -15,7 +15,7 @@ class CreateTimesTable extends Migration
     {
         Schema::create('times', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('visit_id');
+            $table->foreignId('fetcher_id');
             $table->timestamps();
         });
     }

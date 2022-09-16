@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Place extends Model
+class Grade extends Model
 {
     protected $fillable = [
         'name',
     ];
 
-    public function visits(){
-        return $this->hasMany('App\Visit');
+    public function students(){
+        return $this->hasMany('App\Student');
     }
 }

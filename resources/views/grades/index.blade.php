@@ -6,9 +6,8 @@
         <p>{{ $message }}</p>
     </div>
     @endif
-<a class="btn btn-primary my-2" href="{{ route('places.create') }}">Add</a>
-<div class="card">
-    <div class="card-header bg-primary text-white">Places</div>
+<div class="card my-2">
+    <div class="card-header bg-primary text-white">Grades</div>
     <div class="card-body">
         <table class="table table-borderless">
             <thead>
@@ -18,15 +17,15 @@
             </tr>
             </thead>
             <tbody>
-                @foreach ($places as $place)
+                @foreach ($grades as $grade)
                     <tr>
                         <td>{{ ++$i }}</td>
-                        <td>{{ $place->name }}</td>
+                        <td>{{ $grade->name }}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 </div>
-{!! $places->links() !!}
+{!! $grades->links() !!}
 @endsection

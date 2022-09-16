@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Place;
+use App\Grade;
 use Illuminate\Http\Request;
 
-class PlaceController extends Controller
+class GradeController extends Controller
 {
     public function __construct()
     {
@@ -13,26 +13,24 @@ class PlaceController extends Controller
 
     public function index()
     {
-        $places = Place::latest()->paginate(5);
+        $grades = Grade::latest()->paginate(5);
 
-        return view('places.index',compact('places'))
+        return view('grades.index',compact('grades'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
-
     public function create()
     {
-        return view('places.create');
+        return view('grades.create');
     }
-
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required',
         ]);
 
-        Place::create($request->all());
+        Grade::create($request->all());
 
-        return redirect()->route('places.index')
-                        ->with('success','Pace created successfully.');
+        return redirect()->route('grades.index')
+                        ->with('success','Grade created successfully.');
     }
 }

@@ -43,13 +43,7 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('visits.index') }}">Visitors</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('places.index') }}">Places</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('visitortypes.index') }}">Visitor Type</a>
+                                <a class="nav-link" href="{{ route('fetchersindex') }}">Registered Students</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
