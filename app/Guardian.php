@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Fetcher extends Model
+class Guardian extends Model
 {
     protected $fillable = [
-        'guardian_id',
+        'student_id',
         'lastname',
         'firstname',
         'mi',
@@ -15,15 +15,14 @@ class Fetcher extends Model
         'email',
         'contactno',
         'image',
-        'verification'
     ];
 
-    public function times(){
-        return $this->hasMany('App\Time');
+    public function student(){
+        return $this->belongsTo('App\Student');
     }
 
-    public function guardian(){
-        return $this->belongsTo('App\Guardian');
+    public function fetchers(){
+        return $this->hasMany('App\Fetcher');
     }
 
     public function getFullNameAttribute()

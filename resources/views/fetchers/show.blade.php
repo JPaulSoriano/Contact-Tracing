@@ -17,12 +17,12 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <label class="font-weight-bold">Grade:</label>
-                        <span>{{ $fetcher->student->grade->name }}</span><br>
+                        <span>{{ $fetcher->guardian->student->grade->name }}</span><br>
                         <label class="font-weight-bold">Name:</label>
-                        <span>{{ $fetcher->student->full_name }}</span><br>
+                        <span>{{ $fetcher->guardian->student->full_name }}</span><br>
                         <label class="font-weight-bold">Address:</label>
-                        <span>{{ $fetcher->student->address }}</span><br>
-                        <img src="{{asset('storage/'.$fetcher->student->image)}}" height="200" width="200" class="img-thumbnail"/>
+                        <span>{{ $fetcher->guardian->student->address }}</span><br>
+                        <img src="{{asset('storage/'.$fetcher->guardian->student->image)}}" height="200" width="200" class="img-thumbnail"/>
                     </div>
                 </div>
             </div>
@@ -50,35 +50,17 @@
     </div>
     <div class="col-sm-3 my-2">
         <div class="card">
-            <div class="card-header border-0 bg-primary text-white">Father</div>
+            <div class="card-header border-0 bg-primary text-white">Parent</div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-12">
-                        <label class="font-weight-bold">Father:</label>
-                        <span>{{ $fetcher->student->father }}</span><br>
+                        <label class="font-weight-bold">Name:</label>
+                        <span>{{ $fetcher->guardian->full_name }}</span><br>
                         <label class="font-weight-bold">Contact No:</label>
-                        <span>{{ $fetcher->student->fcontactno }}</span><br>
+                        <span>{{ $fetcher->guardian->contactno }}</span><br>
                         <label class="font-weight-bold">Email:</label>
-                        <span>{{ $fetcher->student->femail }}</span><br>
-                        <img src="{{asset('storage/'.$fetcher->student->fimage)}}" height="200" width="200"  class="img-thumbnail" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3 my-2">
-        <div class="card">
-            <div class="card-header border-0 bg-primary text-white">Mother</div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <label class="font-weight-bold">Mother:</label>
-                        <span>{{ $fetcher->student->mother }}</span><br>
-                        <label class="font-weight-bold">Contact No:</label>
-                        <span>{{ $fetcher->student->mcontactno }}</span><br>
-                        <label class="font-weight-bold">Email:</label>
-                        <span>{{ $fetcher->student->memail }}</span><br>
-                        <img src="{{asset('storage/'.$fetcher->student->mimage)}}" height="200" width="200"  class="img-thumbnail" />
+                        <span>{{ $fetcher->guardian->email }}</span><br>
+                        <img src="{{asset('storage/'.$fetcher->guardian->image)}}" height="200" width="200"  class="img-thumbnail" />
                     </div>
                 </div>
             </div>

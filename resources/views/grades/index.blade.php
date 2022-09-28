@@ -6,6 +6,8 @@
         <p>{{ $message }}</p>
     </div>
     @endif
+
+<a class="btn btn-primary my-2" href="{{ route('grades.create') }}">New</a>
 <div class="card my-2">
     <div class="card-header bg-primary text-white">Grades</div>
     <div class="card-body">

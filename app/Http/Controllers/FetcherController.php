@@ -4,31 +4,25 @@ namespace App\Http\Controllers;
 use App\Fetcher;
 use App\Mail\Approved;
 use App\Mail\Declined;
-use App\Student;
+use App\Guardian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Scanned;
+use Illuminate\Support\Facades\Storage;
 
 class FetcherController extends Controller
 {
-    public function __construct() {
-        $this->middleware('auth', ['except' => [
-            'create', 'store'
-        ]]);
-    }
 
     public function index()
     {
         $fetchers = Fetcher::latest()->paginate(5);
-
-        return view('fetchers.index',compact('fetchers'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('fetchers.index',compact('fetchers'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
-    public function create(Student $student)
+    public function create(Guardian $guardian)
     {
-        return view('fetchers.create', compact('student'));
+        return view('fetchers.create', compact('guardian'));
     }
-    public function store(Request $request, Student $student)
+    public function store(Request $request, Guardian $guardian)
     {
         $request->validate([
             'lastname' => 'required',
@@ -42,12 +36,19 @@ class FetcherController extends Controller
 
 
         $data = $request->all();
-        $data['student_id'] = $student->id;
+        $data['guardian_id'] = $guardian->id;
 
-        if ($image = $request->file('image')) {
-            $image = $request->image->store('images', 'public');
-            $data['image'] = "$image";
-        }
+        $image_parts = explode(";base64,", $request->image);
+        $image_type_aux = explode("image/", $image_parts[0]);
+        $image_type = $image_type_aux[1];
+        $image_base64 = base64_decode($image_parts[1]);
+
+        $imageName = uniqid() . '.png';
+
+        $imageFullPath = "images/".$imageName;
+
+        Storage::disk('local')->put("public/".$imageFullPath, $image_base64 );
+        $data['image'] = "$imageFullPath";
 
         $data = Fetcher::create($data);
         return redirect('/qrcode/'.$data->id);
@@ -55,21 +56,21 @@ class FetcherController extends Controller
 
     public function show(Fetcher $fetcher){
         $time = $fetcher->times()->create();
-        Mail::to($fetcher->student->femail)->send(new Scanned($time));
-        Mail::to($fetcher->student->memail)->send(new Scanned($time));
+        Mail::to($fetcher->email)->send(new Scanned($time));
+        Mail::to($fetcher->guardian->email)->send(new Scanned($time));
         return view('fetchers.show', compact('time', 'fetcher'));
     }
 
     public function approve(Fetcher $fetcher)
     {
-         Mail::to($fetcher->student->femail)->send(new Approved($fetcher));
-         Mail::to($fetcher->student->memail)->send(new Approved($fetcher));
+         Mail::to($fetcher->email)->send(new Approved($fetcher));
+         Mail::to($fetcher->guardian->email)->send(new Approved($fetcher));
          return view('home');
     }
     public function decline(Fetcher $fetcher)
     {
-         Mail::to($fetcher->student->femail)->send(new Declined($fetcher));
-         Mail::to($fetcher->student->memail)->send(new Declined($fetcher));
+         Mail::to($fetcher->email)->send(new Declined($fetcher));
+         Mail::to($fetcher->guardian->email)->send(new Declined($fetcher));
          return view('home');
     }
 

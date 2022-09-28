@@ -6,17 +6,16 @@ use Illuminate\Http\Request;
 
 class GradeController extends Controller
 {
-    public function __construct()
+    function __construct()
     {
-        $this->middleware('auth');
+         $this->middleware('permission:admin');
     }
 
     public function index()
     {
         $grades = Grade::latest()->paginate(5);
 
-        return view('grades.index',compact('grades'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('grades.index',compact('grades'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
     public function create()
     {
@@ -30,7 +29,6 @@ class GradeController extends Controller
 
         Grade::create($request->all());
 
-        return redirect()->route('grades.index')
-                        ->with('success','Grade created successfully.');
+        return redirect()->route('grades.index')->with('success','Grade created successfully.');
     }
 }

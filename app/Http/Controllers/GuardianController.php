@@ -1,34 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Grade;
 use App\Student;
-use Illuminate\Http\Request;
+use App\Guardian;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
-class StudentController extends Controller
+class GuardianController extends Controller
 {
-    public function __construct() {
-        $this->middleware('auth', ['except' => [
-            'create', 'store'
-        ]]);
+    public function create(Student $student)
+    {
+        return view('guardians.create', compact('student'));
     }
 
-    public function index()
-    {
-        $students = Student::latest()->paginate(5);
-        return view('students.index',compact('students'))->with('i', (request()->input('page', 1) - 1) * 5);
-    }
-    public function create()
-    {
-        $grades = Grade::all();
-        return view('students.create', compact('grades'));
-    }
-
-    public function store(Request $request)
+    public function store(Request $request, Student $student)
     {
         $request->validate([
-            'grade_id' => 'required',
             'lastname' => 'required',
             'firstname' => 'required',
             'mi' => 'required',
@@ -39,6 +26,7 @@ class StudentController extends Controller
         ]);
 
         $input = $request->all();
+        $input['student_id'] = $student->id;
 
         $image_parts = explode(";base64,", $request->image);
         $image_type_aux = explode("image/", $image_parts[0]);
@@ -53,7 +41,7 @@ class StudentController extends Controller
         $input['image'] = "$imageFullPath";
 
 
-        $student = Student::create($input);
-        return redirect()->route('guardianscreate', $student->id)->with('success','Success! Now Enter The Details of Your Guardian');
+        $guardian = Guardian::create($input);
+        return redirect()->route('fetcherscreate', $guardian->id)->with('success','Success! Now Enter The Details of Your Fetcher');
     }
 }

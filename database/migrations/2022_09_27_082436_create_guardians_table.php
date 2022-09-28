@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFetchersTable extends Migration
+class CreateGuardiansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateFetchersTable extends Migration
      */
     public function up()
     {
-        Schema::create('fetchers', function (Blueprint $table) {
+        Schema::create('guardians', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('guardian_id');
+            $table->foreignId('student_id');
             $table->string('lastname');
             $table->string('firstname');
             $table->string('mi');
@@ -23,7 +23,6 @@ class CreateFetchersTable extends Migration
             $table->string('email');
             $table->string('contactno');
             $table->string('image');
-            $table->enum('verification', [0, 1])->default(0);
             $table->timestamps();
         });
     }
@@ -35,6 +34,6 @@ class CreateFetchersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fetchers');
+        Schema::dropIfExists('guardians');
     }
 }

@@ -14,24 +14,17 @@ class Student extends Model
         'address',
         'email',
         'contactno',
-        'image',
-        'father',
-        'femail',
-        'fcontactno',
-        'fimage',
-        'mother',
-        'memail',
-        'mcontactno',
-        'mimage'
+        'image'
     ];
 
     public function grade(){
         return $this->belongsTo('App\Grade');
     }
 
-    public function fetchers(){
-        return $this->hasMany('App\Fetcher');
+    public function guardians(){
+        return $this->hasMany('App\Guardian');
     }
+
     public function getFullNameAttribute()
     {
         return "{$this->lastname}, {$this->firstname} {$this->mi}";

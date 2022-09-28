@@ -14,8 +14,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Student</th>
-                <th scope="col">Father</th>
-                <th scope="col">Mother</th>
+                <th scope="col">Parent</th>
                 <th scope="col">Fetcher</th>
                 <th scope="col">Status</th>
                 <th scope="col">Action</th>
@@ -26,9 +25,8 @@
                 @foreach ($fetchers as $fetcher)
                     <tr>
                         <td>{{ ++$i }}</td>
-                        <td>{{ $fetcher->student->full_name }}</td>
-                        <td>{{ $fetcher->student->father }}</td>
-                        <td>{{ $fetcher->student->mother }}</td>
+                        <td>{{ $fetcher->guardian->student->full_name }}</td>
+                        <td>{{ $fetcher->guardian->student->full_name }}</td>
                         <td>{{ $fetcher->full_name }}</td>
                         <td>
                             @if($fetcher->verification == 1)
@@ -67,20 +65,16 @@
         <div class="modal-body text-center">
             <div class="row">
                 <div class="col-sm-3">
-                    <img src="{{asset('storage/'.$fetcher->student->image)}}" height="200" width="200" class="img-thumbnail"/><br>
-                    <span class="font-weight-bold my-1">{{ $fetcher->student->full_name }}</span>
+                    <img src="{{asset('storage/'.$fetcher->guardian->student->image)}}" height="200" width="200" class="img-thumbnail"/><br>
+                    <span class="font-weight-bold my-1">Learner: </span>{{ $fetcher->guardian->student->full_name }}
                 </div>
                 <div class="col-sm-3">
-                    <img src="{{asset('storage/'.$fetcher->student->fimage)}}" height="200" width="200" class="img-thumbnail"/><br>
-                    <span class="font-weight-bold my-1">{{ $fetcher->student->father }}</span>
-                </div>
-                <div class="col-sm-3">
-                    <img src="{{asset('storage/'.$fetcher->student->mimage)}}" height="200" width="200" class="img-thumbnail"/><br>
-                    <span class="font-weight-bold my-1">{{ $fetcher->student->mother }}</span>
+                    <img src="{{asset('storage/'.$fetcher->guardian->image)}}" height="200" width="200" class="img-thumbnail"/><br>
+                    <span class="font-weight-bold my-1">Guardian: </span>{{ $fetcher->guardian->full_name }}
                 </div>
                 <div class="col-sm-3">
                     <img src="{{asset('storage/'.$fetcher->image)}}" height="200" width="200" class="img-thumbnail"/><br>
-                    <span class="font-weight-bold my-1">{{ $fetcher->full_name }}</span>
+                    <span class="font-weight-bold my-1">Fetcher: </span>{{ $fetcher->full_name }}
                 </div>
             </div>
         </div>

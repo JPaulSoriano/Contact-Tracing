@@ -1,11 +1,13 @@
 @component('mail::message')
 # ISUDD - CONTACT TRACER
 
-Dear Mr. <b>{{ $fetcher->student->father}}</b>, and Mrs. <b>{{ $fetcher->student->mother}}</b>
+Dear Mr./Mrs. <b>{{ $fetcher->guardian->full_name}}
 
-YOUR STUDENT HAS BEEN APPROVE TO ENTER/LEAVE THE CAMPUS
+YOUR LEARNER HAS BEEN <span style="color:green; font-weight: bold;">APPROVE</span> TO ENTER/LEAVE THE CAMPUS
 @component('mail::panel')
-Student Name: <b>{{ $fetcher->student->full_name}}</b><br>
+Learner Name: <b>{{ $fetcher->guardian->student->full_name}}</b><br>
+Guardian Name: <b>{{ $fetcher->guardian->full_name}}</b><br>
+Fetcher Name: <b>{{ $fetcher->full_name}}</b><br>
 @endcomponent
 
 Best regards,<br>
