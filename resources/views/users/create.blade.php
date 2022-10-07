@@ -50,8 +50,8 @@
         <div class="form-group">
             <label>Select Grade (For Faculty Only)</label>
             <select class="form-control" name="grade_id">
-            @foreach ($grades as $grade)
             <option value="">...</option>
+            @foreach ($grades as $grade)
             <option value="{{ $grade->id }}">{{ $grade->name }}</option>
             @endforeach
             </select>
