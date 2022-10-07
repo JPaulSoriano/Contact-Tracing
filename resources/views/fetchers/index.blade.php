@@ -6,6 +6,7 @@
         <p>{{ $message }}</p>
     </div>
     @endif
+@can('faculty')
 <div class="card my-2">
     <div class="card-header bg-primary text-white">Registered Students</div>
     <div class="card-body">
@@ -85,5 +86,5 @@
     </div>
 </div>
 @endforeach
-
+@endcan
 @endsection

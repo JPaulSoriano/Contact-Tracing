@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 use App\Fetcher;
+use App\Guardian;
+use App\Mail\Scanned;
 use App\Mail\Approved;
 use App\Mail\Declined;
-use App\Guardian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\Scanned;
 use Illuminate\Support\Facades\Storage;
 
 class FetcherController extends Controller
@@ -15,9 +16,14 @@ class FetcherController extends Controller
 
     public function index()
     {
-        $fetchers = Fetcher::latest()->paginate(5);
+        $fetchers = Fetcher::whereHas('guardian', function ($query) {
+            $query->whereHas('student', function ($query) {
+                $query->where('grade_id', Auth::user()->grade_id);
+            });
+        })->latest()->paginate(5);
         return view('fetchers.index',compact('fetchers'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
+
     public function create(Guardian $guardian)
     {
         return view('fetchers.create', compact('guardian'));

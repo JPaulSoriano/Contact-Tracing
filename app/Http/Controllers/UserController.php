@@ -8,6 +8,7 @@ use App\User;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
+use App\Grade;
 
 class UserController extends Controller
 {
@@ -26,8 +27,9 @@ class UserController extends Controller
 
     public function create()
     {
+        $grades = Grade::all();
         $roles = Role::pluck('name','name')->all();
-        return view('users.create',compact('roles'));
+        return view('users.create',compact('roles', 'grades'));
     }
 
 
