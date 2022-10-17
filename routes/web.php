@@ -44,4 +44,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/decline/{fetcher}', 'FetcherController@decline')->name('decline');
     Route::get('/fetchers/{fetcher}/show','FetcherController@show')->name('fetchersshow');
     Route::get('/fetchers','FetcherController@index')->name('fetchersindex');
+    Route::delete('/fetchers/{fetcher}','FetcherController@destroy')->name('fetchersdestroy');
 });

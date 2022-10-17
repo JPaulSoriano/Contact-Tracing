@@ -36,7 +36,17 @@
                                 <div class="text-danger font-weight-bold">Unverified</div>
                             @endif
                         </td>
-                        <td> <button type="button" class="btn btn-sm btn-primary btn-block my-1" data-toggle="modal" data-target="#modal-{{ $fetcher->id }}">View</button></td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-primary btn-block my-1" data-toggle="modal" data-target="#modal-{{ $fetcher->id }}">View</button>
+                            <form action="{{ route('fetchersdestroy',$fetcher->id) }}" method="POST">
+
+
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
                         <td>
                             @if($fetcher->verification == 1)
                                 <form action="{{ route('unverify', $fetcher) }}" method="POST">

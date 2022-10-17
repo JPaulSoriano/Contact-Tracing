@@ -16,6 +16,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -23,6 +24,7 @@
                     <tr>
                         <td>{{ ++$i }}</td>
                         <td>{{ $grade->name }}</td>
+                        <td><a class="btn btn-primary" href="{{ route('grades.edit',$grade->id) }}">Edit</a></td>
                     </tr>
                 @endforeach
             </tbody>

@@ -31,4 +31,21 @@ class GradeController extends Controller
 
         return redirect()->route('grades.index')->with('success','Grade created successfully.');
     }
+
+    public function edit(Grade $grade)
+    {
+        return view('grades.edit',compact('grade'));
+    }
+
+    public function update(Request $request, Grade $grade)
+    {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $grade->update($request->all());
+
+        return redirect()->route('grades.index')
+                        ->with('success','Grade updated successfully');
+    }
 }

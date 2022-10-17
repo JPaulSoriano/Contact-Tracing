@@ -93,4 +93,12 @@ class FetcherController extends Controller
         $fetcher->save();
         return redirect()->route('fetchersindex');
     }
+
+    public function destroy(Fetcher $fetcher)
+    {
+        $fetcher->delete();
+
+        return redirect()->route('fetchersindex')
+                        ->with('success','Deleted successfully');
+    }
 }
