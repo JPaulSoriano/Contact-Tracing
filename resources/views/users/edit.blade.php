@@ -42,10 +42,21 @@
             {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
         </div>
     </div>
-    <div class="col-sm-12">
+    <div class="col-sm-6">
         <div class="form-group">
             <label>Role:</label>
             {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>Select Grade (For Faculty Only)</label>
+            <select class="form-control" name="grade_id">
+            <option value="">...</option>
+            @foreach ($grades as $grade)
+            <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+            @endforeach
+            </select>
         </div>
     </div>
     <div class="col-sm-12 text-center">

@@ -9,6 +9,7 @@ use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
 use App\Grade;
+use Illuminate\Support\Arr;
 
 class UserController extends Controller
 {
@@ -27,7 +28,7 @@ class UserController extends Controller
 
     public function create()
     {
-        $grades = Grade::all();
+        $grades = Grade::get();
         $roles = Role::pluck('name','name')->all();
         return view('users.create',compact('roles', 'grades'));
     }
@@ -61,11 +62,12 @@ class UserController extends Controller
 
     public function edit($id)
     {
+        $grades = Grade::all();
         $user = User::find($id);
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
 
-        return view('users.edit',compact('user','roles','userRole'));
+        return view('users.edit',compact('user','roles','userRole', 'grades'));
     }
 
 
@@ -82,7 +84,7 @@ class UserController extends Controller
         if(!empty($input['password'])){
             $input['password'] = Hash::make($input['password']);
         }else{
-            $input = array_except($input,array('password'));
+            $input = Arr::except($input,array('password'));
         }
 
         $user = User::find($id);
